@@ -24,7 +24,7 @@ const SplashScreen = ({ onAnimationEnd }: Props) => {
     },
   });
 
-
+  
   return (
     <Animated.View {...container} style={[container.style, { opacity }]}>
       <Image {...logo} />

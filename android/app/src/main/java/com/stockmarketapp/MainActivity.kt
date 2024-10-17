@@ -11,8 +11,8 @@ class MainActivity : ReactActivity() {
 
   
   override fun onCreate(savedInstanceState: Bundle?) {
-    RNBootSplash.init(this, R.style.BootTheme) // ⬅️ initialize the splash screen
     super.onCreate(null) // super.onCreate(null) with react-native-screens
+    RNBootSplash.init(this, R.style.BootTheme) // ⬅️ initialize the splash screen
   }
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

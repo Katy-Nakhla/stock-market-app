@@ -5,36 +5,27 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeScreen from './HomeScreen';
+import ExploreScreen from './ExploreScreen';
 
-import SplashScreen from './SplashScreen';
+const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
-  const [visible, setVisible] = useState(true);
-
   return (
-    <View style={{flex: 1,justifyContent:'center', backgroundColor:'white'}}>
-      <Text style={styles.textStyle}>Hello Katy!</Text>
-      {visible && (
-        <SplashScreen
-          onAnimationEnd={() => {
-            setVisible(false);
-          }}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          // options={{headerShown: false}}
         />
-      )}
-    </View>
+        <Stack.Screen name="Explore" component={ExploreScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  textStyle:{
-    fontSize:20,
-    textAlign:'center',
-    justifyContent:'center',
-    alignItems:'center',
-    color:'#000'
-  }
-});
 
 export default App;
