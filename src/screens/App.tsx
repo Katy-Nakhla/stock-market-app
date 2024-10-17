@@ -13,11 +13,13 @@ import HomeScreen from './HomeScreen';
 import ExploreScreen from './ExploreScreen';
 import Profile from './Profile';
 import {Image, View, Text} from 'react-native';
+import {Provider} from 'react-redux';
+import { store } from '../store/store';
 
 const Drawer = createDrawerNavigator();
 
 interface LogoTitleProps {
-  tintColor?: string; // or any other props you expect
+  tintColor?: string;
 }
 function LogoTitle({tintColor}: LogoTitleProps): React.JSX.Element {
   return (
@@ -39,33 +41,35 @@ function LogoTitle({tintColor}: LogoTitleProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Home"
-          component={HomeScreen}
-          // options={{headerShown: false}}
-          options={{
-            drawerItemStyle: {display: 'none'},
-          }}
-        />
-        <Drawer.Screen
-          name="Explore"
-          component={ExploreScreen}
-          options={{
-            headerTitle: props => <LogoTitle {...props} />,
-            headerStyle: {
-              backgroundColor: '#191927',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Drawer.Screen name="Profile" component={Profile} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              drawerItemStyle: {display: 'none'},
+              headerShown: false,
+            }}
+          />
+          <Drawer.Screen
+            name="Explore"
+            component={ExploreScreen}
+            options={{
+              headerTitle: props => <LogoTitle {...props} />,
+              headerStyle: {
+                backgroundColor: '#191927',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Drawer.Screen name="Profile" component={Profile} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

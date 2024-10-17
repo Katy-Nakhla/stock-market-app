@@ -1,10 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import SplashScreen from './SplashScreen';
-import ExploreScreen from './ExploreScreen';
+import SignupScreen from './SignupScreen';
+import {useSelector} from 'react-redux';
+import {useNavigation, ParamListBase} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const HomeScreen = () => {
   const [visible, setVisible] = useState(true);
+  const userData = useSelector(state => state.userData);
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+  useEffect(() => {
+    if (!visible && userData.username) {
+      navigation.navigate('Explore');
+    }
+  }, [visible]);
 
   return visible ? (
     <SplashScreen
@@ -13,7 +24,7 @@ const HomeScreen = () => {
       }}
     />
   ) : (
-   <ExploreScreen/>
+    <SignupScreen />
   );
 };
 
