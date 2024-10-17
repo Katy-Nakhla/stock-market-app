@@ -4,13 +4,18 @@ import React from 'react';
 interface InputProps {
   searchValue: string;
   setSearchValue: (newValue: string) => void;
-  fetchStocks: () => {};
+  fetchStocks: (clearSearch?: boolean) => {};
 }
 const SearchInput = ({
   searchValue,
   setSearchValue,
   fetchStocks,
 }: InputProps) => {
+  const handleClearSearchValue = () => {
+    setSearchValue('');
+    fetchStocks(true);
+  };
+
   return (
     <View style={{padding: 10}}>
       <TextInput
@@ -27,7 +32,7 @@ const SearchInput = ({
       {searchValue.trimStart().length > 0 && (
         <Pressable
           style={styles.clearIconContainer}
-          onPress={() => setSearchValue('')}>
+          onPress={handleClearSearchValue}>
           <Image
             style={styles.clearIcon}
             source={require('../../assets/clearIcon.jpg')}></Image>
