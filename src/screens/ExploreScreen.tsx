@@ -4,11 +4,15 @@ import React from 'react'
 const ExploreScreen = () => {
   return (
     <View>
-      <Text>ExploreScreen</Text>
+      <Text style={styles.textStyle}>ExploreScreen</Text>
     </View>
   )
 }
 
 export default ExploreScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textStyle:{
+    color:'#000'
+  }
+})

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import SplashScreen from './SplashScreen';
+import ExploreScreen from './ExploreScreen';
 
 const HomeScreen = () => {
   const [visible, setVisible] = useState(true);
@@ -12,9 +13,7 @@ const HomeScreen = () => {
       }}
     />
   ) : (
-    <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'white'}}>
-      <Text style={styles.textStyle}>Hello Katy!</Text>
-    </View>
+   <ExploreScreen/>
   );
 };
 
