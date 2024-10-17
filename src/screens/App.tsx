@@ -6,13 +6,16 @@
  */
 
 import React from 'react';
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import ExploreScreen from './ExploreScreen';
+import Profile from './Profile';
 import {Image, View, Text} from 'react-native';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 interface LogoTitleProps {
   tintColor?: string; // or any other props you expect
 }
@@ -37,11 +40,18 @@ function LogoTitle({tintColor}: LogoTitleProps): React.JSX.Element {
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Drawer.Navigator>
+        <Drawer.Screen
           name="Home"
           component={HomeScreen}
           // options={{headerShown: false}}
+          options={{
+            drawerItemStyle: {display: 'none'},
+          }}
+        />
+        <Drawer.Screen
+          name="Explore"
+          component={ExploreScreen}
           options={{
             headerTitle: props => <LogoTitle {...props} />,
             headerStyle: {
@@ -53,8 +63,8 @@ function App(): React.JSX.Element {
             },
           }}
         />
-        <Stack.Screen name="Explore" component={ExploreScreen} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Profile" component={Profile} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
