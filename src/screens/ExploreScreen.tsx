@@ -1,18 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import SearchInput from '../components/searchInput/SearchInput';
 
 const ExploreScreen = () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const fetchStocks = async () => {};
+
   return (
     <View>
-      <Text style={styles.textStyle}>ExploreScreen</Text>
+      <SearchInput
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        fetchStocks={fetchStocks}
+      />
     </View>
-  )
-}
+  );
+};
 
-export default ExploreScreen
+export default ExploreScreen;
 
 const styles = StyleSheet.create({
-  textStyle:{
-    color:'#000'
-  }
-})
+  textStyle: {
+    color: '#000',
+  },
+});
